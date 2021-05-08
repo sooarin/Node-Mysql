@@ -1,0 +1,20 @@
+extends ../layouts/main_layout 
+block content 
+    link(rel='stylesheet', href='//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/an-old-hope.min.css') 
+    script(src='//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js') 
+    script hljs.initHighlightingOnLoad(); 
+    link(rel='stylesheet', href='/stylesheets/md/modest.css') 
+    div#container 
+        div.row
+            div.side-f 
+            div.main 
+                div 
+                    h1 #{post.subject} 
+                div#markdown !{post.content} 
+                div 
+                    button.btn.blue.pointer(type='button', onclick='location.href="/posts/' + post.id + '/edit"') 수정 
+                    button.btn.red.pointer(type='button', onclick="document.getElementById('delForm').submit();") 삭제
+                    form(id='delForm', action='/posts/' + post.id + '?_method=DELETE', method='POST')
+                        input(type='password', name='password')
+                div 댓글 창 나올 곳 
+        div.side-r
